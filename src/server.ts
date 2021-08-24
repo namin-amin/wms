@@ -1,16 +1,22 @@
-import { stack } from './routing/Stacks';
+import "reflect-metadata";
+import { generateSchema } from './generateSchema';
+import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 
 
-const app = express();
+async function startApolloServer() {
 
-app.use('/stack', stack);
+    const schema = await generateSchema();
+    const app = express();
+    const server = new ApolloServer({
+        schema
+    });
+    await server.start();
+    server.applyMiddleware({ app });
+    app.listen(5000, () => {
+        console.log(`🚀 Server ready at http://localhost:5000${server.graphqlPath}`);
+    });
 
-app.get('/', (_req, res) => {
-    res.send("hellll");
-});
+}
 
-app.listen(3000, "0.0.0.0", () => {
-    console.log("server running");
-
-});
+startApolloServer();
