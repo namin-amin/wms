@@ -5,7 +5,7 @@ import { Arg, FieldResolver, Mutation, Query, Resolver, Root } from "type-graphq
 
 
 @Resolver(_of => Rack)
-export class rackResolver {
+export class RackResolver {
 
     //get all Rack details
     @Query(_returns => [Rack])
@@ -32,7 +32,7 @@ export class rackResolver {
      * @todo need to implement a function to create a Name for rack
      * @todo need to create function that can create Names for shelves and create them
      */
-    @Mutation(_returns => Rack)
+    @Mutation(_returns => Rack, { nullable: true })
     async createRack(@Arg("rackData") addData: AddRack): Promise<Rack | undefined> {
         return;
     }

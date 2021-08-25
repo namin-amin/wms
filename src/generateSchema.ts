@@ -1,6 +1,6 @@
 import { ProductStockResolver } from './Models/ProductStock/productStockResolver';
 import { ProductResolver } from './Models/Product/productResolver';
-import { rackResolver } from './Models/Racks/rackResolver';
+import { RackResolver } from './Models/Racks/rackResolver';
 import { buildSchema } from 'type-graphql';
 /**
  * 
@@ -8,6 +8,6 @@ import { buildSchema } from 'type-graphql';
  */
 export const generateSchema = async () => {
     return await buildSchema({
-        resolvers: [rackResolver, ProductResolver, ProductStockResolver]
+        resolvers: [RackResolver, ProductResolver, ProductStockResolver]
     });
 };
