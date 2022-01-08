@@ -33,7 +33,7 @@ export class RackResolver {
      * @todo need to create function that can create Names for shelves and create them
      */
     @Mutation(_returns => Rack, { nullable: true })
-    async createRack(@Arg("rackData") addData: AddRack): Promise<Rack | undefined> {
+    async createRack(@Arg("rackData") _addData: AddRack): Promise<Rack | undefined> {
         return;
     }
 
@@ -44,7 +44,7 @@ export class RackResolver {
      * @todo same as createRack()
      */
     @Mutation(_returns => Rack)
-    async updateRack(@Arg("updateRackData") updateData: UpdateRack): Promise<Rack | undefined> {
+    async updateRack(@Arg("updateRackData") _updateData: UpdateRack): Promise<Rack | undefined> {
         return;
     }
 
@@ -68,6 +68,6 @@ export class RackResolver {
 
     @FieldResolver()
     async shelve(@Root() rack: Rack) {
-        return await Shelve.find({ where: { rackName: rack.id } });
+        return await Shelve.find({ where: { rackName: rack.rackName } });
     }
 }

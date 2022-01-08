@@ -68,6 +68,10 @@ export class ProductResolver {
     //resolver to get stocks belonging to individual Product
     @FieldResolver()
     async stock(@Root() product: Product) {
-        return ProductStock.find({ id: product.id });
+        return ProductStock.find({
+            where: {
+                productID: product.id
+            }
+        });
     }
 }
