@@ -4,6 +4,7 @@ import { generateSchema } from './generateSchema';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { createConnection } from 'typeorm';
+import cors from 'cors';
 
 
 async function startApolloServer() {
@@ -13,6 +14,8 @@ async function startApolloServer() {
     //get schema from typegraphql
     const schema = await generateSchema();
     const app = express();
+    //add CORS
+    app.use(cors());
     //create graphql server
     const server = new ApolloServer({
         schema
